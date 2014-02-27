@@ -15,9 +15,11 @@
 
         $(document).ready(function() {
 
+            var cPrefix = 'permit_';
+
             function issuePermit(permit) {
                 // create the permit, give it a value of 1
-                $.cookie(permit, 1);
+                $.cookie(cPrefix+permit, 1);
                 // either reload the page or redirect to location based on user settings
                 if(settings.issueDestination === 'reload')
                 {
@@ -30,8 +32,21 @@
 
             function revokeAllPermits(permits){
                 $.each($(permits), function(index, value) {
-                    $.removeCookie(value);
+                    $.removeCookie(cPrefix+value);
                 });
+            }
+
+            function permitExists(permit){
+                // if no parameter is passed to the function, set the parameter equal to the permits setting object
+                permit = typeof permit !== 'undefined' ? permit : settings.permits;
+                var i = 0;
+                $.each($(settings.permits), function(index, value) {
+                    if($.cookie(cPrefix+settings.permits[index]))
+                    {
+                        i++;
+                    }
+                });
+                return i;
             }
 
             // hide default permits
@@ -48,11 +63,15 @@
                 issuePermit(settings.permits[0]);
             });
 
-            // Iterate through permits and hide/show appropriate content
+            // Iterate through user specified permits
             $.each($(settings.permits), function(index, value) {
-                if($.cookie(settings.permits[index]))
+
+                // hide/show appropriate content
+                if($.cookie(cPrefix+settings.permits[index]))
                 {
+                    // if any permit exists, hide permit-less state content
                     $('.permit-none').hide();
+                    // if any permit exists, show globally permitted state content
                     $('.permit-all').show();
                     // hide all permit content except selected permits
                     for(var i=0;i<settings.permits.length;i++)
@@ -65,13 +84,16 @@
                     // show permitted content
                     $('.permit-'+value).show();
                 }
+
             });
 
-            // if no permits exist...
-            if($.isEmptyObject($.cookie())){
+            // check to see if any permits exist, if not...
+            if(!permitExists()>=1){
+
+                // show public content
                 $('.permit-none').show();
 
-                // show forced message based on data-permit-message attribute
+                // show forced message content based on data-permit-message attribute
                 $('.permit-force').each(function(i, obj) {
                     var message = $(this).data('permit-message');
                     $(this).html(message).show();
