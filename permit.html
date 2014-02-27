@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Permit.js Demo</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen">
+	<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+</head>
+<body>
+
+	<div class="jumbotron">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h1>Permit.js</h1>
+                    <p>Permit.js makes building interactive, multi-state prototypes for websites and apps easy.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+
+        <section class="row">
+            <div class="col-md-7">
+                <p class="lead">Maybe your website has certain features that are only available to logged-in members and other features only available only to administrators. Or perhaps your app has different features depending on whether it's on- or offline. Or what about the free versus paid versions? These are all examples of state.</p>
+                <p class="lead">Permit.js makes simulating those different situations a breeze. It's designed for use by anyone that does interactive protype work in HTML and CSS, including information architects and other user interface and user experience (UI/UX) professionals.</p>
+            </div>
+            <div class="col-md-5">
+                <h3>Basic Demo</h3>
+                <div class="alert alert-info permit permit-none">You're currently logged out.</div>
+                <button class="btn btn-primary btn-lg permit-none permit-issue">Log In</button>
+
+                <div class="alert alert-danger permit permit-all">You're still logged in.</div>
+                <button class="btn btn-danger btn-lg permit permit-revoke permit-all">Log Out</button>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="row">
+            <div class="col-sm-12">
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3 class="text-center lead">Take Prototypes to the Next Level</h3>
+                        <p class="text-center">Use Permit.js to improve the ability for your prototypes to simulate complex, interactive behaviors.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3 class="text-center lead">Easy to Implement</h3>
+                        <p class="text-center">No server side langauges necessary. Just load Permit.js, specify your states and apply some simple CSS.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3 class="text-center lead">Persistent</h3>
+                        <p class="text-center">Permit's states persist across pages and section of your website/app. "Issue a permit" and then surf around your entire site to get the full user experience.</p>
+                    </div>
+                </div>
+
+                </ul>
+            </div>
+        </section>
+
+        <hr>
+
+<section class="row">
+<div class="col-sm-12">
+<h2>Usage</h2>
+
+<h4>Include dependencies and permit.js</h4>
+<p>Permit.js requires jQuery and the <a href="https://github.com/carhartl/jquery-cookie" target="_blank">jquery.cookie plugin</a>. You must load those before you load permit.js.</p>
+<pre>
+&lt;script src="js/jquery-1.10.1.min.js"&gt;&lt;/script&gt;
+&lt;script src="js/jquery.cookie.js"&gt;&lt;/script&gt;
+&lt;script src="js/permit.js"&gt;&lt;/script&gt;
+</pre>
+
+<br>
+<h4>Instantiate</h4>
+<p>The only required setting is the 'permits' setting. This is where you specify your states. The first state in the permits object is referred to as the default state.</p>
+<pre>
+$(document).ready(function(){
+    $.permit({
+        permits: ['free','premium','admin']
+    });
+});
+</pre>
+
+<br>
+<h4>(Optional) Instantiate with Additional Settings</h4>
+<p>Use Permit's <a href="#options">optional settings</a> to customize its behavior.</p>
+<pre>
+$(document).ready(function(){
+    $.permit({
+        permits: ['free','premium','admin'],
+        issueDestination: 'reload',
+        revokeDestination: 'http://' + window.location.hostname + '/permit.html'
+    });
+});
+</pre>
+
+<br>
+<h4>Apply CSS</h4>
+<p>Permit.js creates several personalized helper classes based on instantiation settings. All you need to do is apply a generic 'permit' class plus one of your personalized permit  classes to your HTML markup. The following example shows how you might apply your CSS classes in the case of three states: free, premium, admin.</p>
+<pre>
+&lt;div class="permit permit-<i>free</i>"&gt;
+    &lt;p&gt;Visible to <i>free</i> users (only).&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="permit permit-<i>premium</i>"&gt;
+    &lt;p&gt;Visible to <i>premium</i> users (only).&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="permit permit-<i>admin</i>"&gt;
+    &lt;p&gt;Visible to <i>admin</i> users (only).&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+
+<br>
+<h4>Combining Classes</h4>
+<p>You can combine any of your custom classes. For example, if you want a block to show for free and premium users, but not admins, you could do the following:</p>
+<pre>
+&lt;div class="permit permit-<i>free</i> permit-<i>premium</i>"&gt;
+    &lt;p&gt;Visible to <i>free</i> and <i>premium</i> users, but not admins.&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+
+<br>
+<h4>Additional Helper Classes</h4>
+<p>Permit.js provides additional helper classes that allow you to create even more complex, interactive experiences.</p>
+<div class="row">
+    <div class="col-sm-8">
+        <dl>
+            <dt>.permit-issue</dt>
+            <dd>Apply this class to any clickable element (e.g. a link or a button) to issue the default permit (the first specified permit in the <i>permits</i> setting). You might do this to simulate a user log-in button.</dd>
+            <br>
+            <dt>.permit-revoke</dt>
+            <dd>Apply this class to any clickable element (e.g. a link or a button) to revoke all permits, as you might to do to simulate a user log-out button.</dd>
+            <br>
+            <dt>.permit-all</dt>
+            <dd>Display for all states, when <i>any</i> permit has been issued (e.g., displays to all logged-in users).</dd>
+            <br>
+            <dt>.permit-none</dt>
+            <dd>Display only when no permits have been issued (e.g., display only to non-logged in users).</dd>
+            <br>
+            <dt>.permit-force</dt>
+            <dd>Apply this class, along with a custom <i>data-messsage</i> attribute, to replace the element's content with a custom message. For example, apply this class to replace a block of premium features with "Upgrade Now". The content in the data attribute gets injected using jQuery's html() method.
+            <br><br>
+<pre>
+&lt;div class="permit permit-<i>force</i> permit-<i>premium</i>" data-permit-message="Please <a href='#'>upgrade</a>"&gt;
+    &lt;p&gt;This content will only show when a premium permit is present, otherwise it shows the message defined in the data-permit-message attribute.&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+            </dd>
+
+
+        </dl>
+
+    </div>
+</div>
+
+
+</div>
+</section>
+
+        <hr>
+
+        <section class="row">
+            <div class="col-sm-12">
+                <h2>Settings &amp; Options</h2>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Setting/Option</th>
+                            <th>Description</th>
+                            <th>Default</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>permits</th>
+                            <td>Object of available states. The first item in the object is the default state; a permit for that state is issued when using the .permit-issue helper class.</td>
+                            <td>['admin']</td>
+                            <td>['free','premium','admin']</td>
+                        </tr>
+                        <tr>
+                            <th>issueDestination</th>
+                            <td>Specifies the action to be taken after an element that has the .permit-issue class is clicked. For example, the action to be taken after a log-in button is clicked. Defaults to a javascript-enabled page reload (i.e., it uses 'self' as the destination). Otherwise it redirects to the specified location.</td>
+                            <td>'reload'</td>
+                            <td>'dashboard.html'</td>
+                        </tr>
+                        <tr>
+                            <th>revokeDestination</th>
+                            <td>Specifies the location the browser will go to after an element with .permit-revoke is clicked (e.g., taking the user back to the homepage upon clicking on the log-out button). Defaults to the root of the current domain. Accepts any valid url.</td>
+                            <td>'http://'+window.location.hostname</td>
+                            <td>'http://mysite.com'</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="row">
+            <div class="col-md-12">
+                <h2>Credits and License</h2>
+            </div>
+            <div class="col-md-6">
+                <p class="lead">Permit.js was developed by <a href="http://technotarek.com">Tarek Anandan, a freelance information architect, UX specialist, and website designer and developer</a> based in Washington, DC.</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <br>
+        <br>
+
+	</div><!-- /container -->
+
+	<!-- GLOBAL CORE SCRIPTS -->
+	<script src="js/vendor/jquery-1.10.1.min.js"></script>
+	<script src="js/vendor/jquery.cookie.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="js/permit.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

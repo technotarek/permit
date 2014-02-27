@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Permit.js Demo</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen">
+	<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+</head>
+<body>
+
+	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+	    <div class="container">
+	        <!-- Brand and toggle get grouped for better mobile display -->
+	        <div class="navbar-header">
+	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            </button>
+	            <!-- <a class="navbar-brand" href="#">Local Resources Discovery Tool</a> -->
+	        </div>
+	        <!-- Collect the nav links, forms, and other content for toggling -->
+	        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+	            <ul class="nav navbar-nav">
+	                <li class="active"><a href="dashboard.html"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+	                <li class="permit permit-premium"><a href="#"><i class="fa fa-envelope"></i> Private Messages <span class="label label-success">15</span></a></li>
+	                <li class="permit permit-admin"><a href="#"><i class="fa fa-user"></i> User Management</a></li>
+	                <li class="permit permit-admin"><a href="#"><i class="fa fa-bug"></i> Bug Reports <span class="label label-danger">8</span></a></li>
+	                <li class="dropdown">
+	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account <i class="fa fa-caret-down"></i></a>
+	                    <ul class="dropdown-menu">
+	                        <li><a href="#">Account Details</a></li>
+	                        <li><a href="#" class="permit-revoke">Log Out</a></li>
+	                    </ul>
+	                </li>
+	                <li class="permit permit-free"><a href="#"><span class="label label-info">Upgrade Now</span></a></li>
+	            </ul>
+
+			<button type="button" class="btn btn-primary navbar-btn pull-right permit permit-all permit-revoke ">Log Out</button>
+
+
+	        </div>
+
+	    </div>
+	</nav>
+
+	<div class="jumbotron">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<br>
+					<h1>Permit.js</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+
+		<section class="row">
+			<div class="col-sm-12">
+				<div class="permit permit-none">
+					<p>We're sorry, you'll need to login.</p>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="permit permit-free">
+					<h3>Congratulations</h3>
+					<p class="lead">You issued a permit that simulates a "free" account.</p>
+					<p class="lead">Use the Permit button in the lower right to simulate an upgrade to a "premium" account. You'll gain some clarity.</p>
+				</div>
+				<div class="permit permit-premium">
+					<h3>Welcome to premium!</h3>
+					<p class="lead">Are things becoming a bit more clear?</p>
+					<p class="lead">Go ahead, <a href="#" data-toggle="modal" data-target=".modal-permit">issue an Admin permit</a>.</p>
+				</div>
+				<div class="permit permit-admin">
+					<h3>You're on top of the world!</h3>
+					<p class="lead">That was a silly exercise, but hopefully it demonstrated how you might use Permit.js. And remember, Permit.js is persistent, so you can use it across a multipage-prototype or app far more complex than this demonstration.</p>
+					<p class="lead">Here are some possible use cases:</p>
+					<ul class="lead">
+						<li>Logged-Out / Logged-In</li>
+						<li>Free / Paid</li>
+						<li>Online / Offline</li>
+						<li>Writer / Editor / Publisher</li>
+						<li>User / Moderator / Administrator</li>
+						<li>Staff / Manager / Executive</li>
+					</ul>
+					<p class="lead">Return to the <a href="permit.html">Permit.js homepage</a>.</p>
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div class="permit permit-free">
+					<br>
+					<img src="img/sheep-free.jpg" class="img-circle img-responsive center-block">
+
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- Permit.js 1 -->
+					<ins class="adsbygoogle"
+					     style="display:inline-block;width:468px;height:60px"
+					     data-ad-client="ca-pub-7124069219813221"
+					     data-ad-slot="1845154836"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+				<div class="permit permit-premium">
+					<br>
+					<img src="img/sheep-premium.jpg" class="img-circle img-responsive center-block">
+				</div>
+				<div class="permit permit-admin">
+					<br>
+					<img src="img/sheep-admin.jpg" class="img-circle img-responsive center-block">
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+<div style="position:fixed;bottom:10px;right:20px">
+    <button class="btn btn-danger btn-sm permit permit-all" data-toggle="modal" data-target=".modal-permit">PERMIT</button>
+</div>
+
+
+<!-- Large modal -->
+<div class="modal fade modal-permit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Permits</h4>
+            </div>
+            <div class="modal-body">
+
+                <select id="permit-options" class="form-control input-xs">
+                    <option value="free">Free</option>
+                    <option value="premium">Premium</option>
+                    <option value="admin">Admin</option>
+                </select>
+
+            </div>
+            <div class="modal-footer">
+                <button id="permit-reissue" type="button" class="btn btn-danger" data-dismiss="modal">Permit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+	<!-- GLOBAL CORE SCRIPTS -->
+	<script src="js/vendor/jquery-1.10.1.min.js"></script>
+	<script src="js/vendor/jquery.cookie.js"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script src="js/permit.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
