@@ -53,7 +53,18 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<br>
-					<h1>Permit.js</h1>
+					<h1 class="pull-left" style="margin-right:20px">Permit.js</h1>
+					<div class="permit permit-none">
+						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+						<!-- Permit.js Large Banner -->
+						<ins class="adsbygoogle"
+						     style="display:inline-block;width:728px;height:90px"
+						     data-ad-client="ca-pub-7124069219813221"
+						     data-ad-slot="1153824038"></ins>
+						<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -155,20 +166,15 @@
 
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title" id="myModalLabel">Permits</h4>
+	                <h4 class="modal-title" id="myModalLabel">Permits Office</h4>
 	            </div>
 	            <div class="modal-body">
 
-	                <select id="permit-options" class="form-control input-xs">
-	                    <option value="free">Free</option>
-	                    <option value="premium">Premium</option>
-	                    <option value="admin">Admin</option>
-	                </select>
+	                <div id="permit-agent"></div>
 
 	            </div>
 	            <div class="modal-footer">
-	                <button id="permit-reissue" type="button" class="btn btn-danger" data-dismiss="modal">Permit</button>
-	                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	                <button type="button" class="btn btn-danger permit-reissue" data-dismiss="modal">Issue Permit</button>
 	            </div>
 
 	        </div>

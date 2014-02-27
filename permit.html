@@ -67,16 +67,16 @@
 <div class="col-sm-12">
 <h2>Usage</h2>
 
-<h4>Include dependencies and permit.js</h4>
+<h3><span class="label label-info label-lg">1</span> Include dependencies and permit.js</h3>
 <p>Permit.js requires jQuery and the <a href="https://github.com/carhartl/jquery-cookie" target="_blank">jquery.cookie plugin</a>. You must load those before you load permit.js.</p>
 <pre>
 &lt;script src="js/jquery-1.10.1.min.js"&gt;&lt;/script&gt;
 &lt;script src="js/jquery.cookie.js"&gt;&lt;/script&gt;
-&lt;script src="js/permit.js"&gt;&lt;/script&gt;
+&lt;script src="js/permit.min.js"&gt;&lt;/script&gt;
 </pre>
 
 <br>
-<h4>Instantiate</h4>
+<h3><span class="label label-info label-lg">2</span> Instantiate</h3>
 <p>The only required setting is the 'permits' setting. This is where you specify your states. The first state in the permits object is referred to as the default state.</p>
 <pre>
 $(document).ready(function(){
@@ -87,7 +87,7 @@ $(document).ready(function(){
 </pre>
 
 <br>
-<h4>(Optional) Instantiate with Additional Settings</h4>
+<h4>Or, Instantiate with Additional Settings</h4>
 <p>Use Permit's <a href="#options">optional settings</a> to customize its behavior.</p>
 <pre>
 $(document).ready(function(){
@@ -100,7 +100,22 @@ $(document).ready(function(){
 </pre>
 
 <br>
-<h4>Apply CSS</h4>
+<h3><span class="label label-info label-lg">3</span> Create a "Permits Agent"</h3>
+<p>Now you need an agent to help you issue your permits. Create a container with an ID of 'permit-agent'. When the script is instantiated, this container will be populated with a dropdown of your available permits. A new permit is issued when you click on an element with a class of 'permit-reissue', which takes the value from your Permits Agent.</p>
+
+<pre>
+&lt;div&gt;
+    &lt;div id="permit-agent"&gt;
+        &lt;!-- A dropdown with your permit options will get inserted here. --&gt;
+    &lt;/div&gt;
+    &lt;button class="permit-reissue"&gt;Issue Permit&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+<p>The demo includes the agent container inside a Twitter Bootstrap modal. This is purely for effect. You may place your agent anywhere.</p>
+
+<br>
+<h3><span class="label label-info label-lg">4</span> Apply CSS</h3>
 <p>Permit.js creates several personalized helper classes based on instantiation settings. All you need to do is apply a generic 'permit' class plus one of your personalized permit  classes to your HTML markup. The following example shows how you might apply your CSS classes in the case of three states: free, premium, admin.</p>
 <pre>
 &lt;div class="permit permit-<i>free</i>"&gt;
@@ -125,6 +140,7 @@ $(document).ready(function(){
 &lt;/div&gt;
 </pre>
 
+
 <br>
 <h4>Additional Helper Classes</h4>
 <p>Permit.js provides additional helper classes that allow you to create even more complex, interactive experiences.</p>
@@ -133,6 +149,9 @@ $(document).ready(function(){
         <dl>
             <dt>.permit-issue</dt>
             <dd>Apply this class to any clickable element (e.g. a link or a button) to issue the default permit (the first specified permit in the <i>permits</i> setting). You might do this to simulate a user log-in button.</dd>
+            <br>
+            <dt>.permit-reissue</dt>
+            <dd>Apply this class to any clickable element (e.g. a link or a button) to issue a new permit. This works in coordination with the <i>permits agent</i>.</dd>
             <br>
             <dt>.permit-revoke</dt>
             <dd>Apply this class to any clickable element (e.g. a link or a button) to revoke all permits, as you might to do to simulate a user log-out button.</dd>
@@ -246,8 +265,8 @@ $(document).ready(function(){
             </div>
             <div class="col-md-6">
                 <ul>
-                    <li>Refactor js</li>
                     <li>Add public api methods</li>
+                    <li>Add support for multiple, simultaneous permits</li>
                 </ul>
             </div>
         </section>
