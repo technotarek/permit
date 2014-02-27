@@ -3,8 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Permit.js Demo</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen">
 	<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
@@ -26,12 +25,12 @@
 	        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 	            <ul class="nav navbar-nav">
-	                <li class="active permit permit-all"><a href="dashboard.html"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-	                <li class="permit permit-premium"><a href="#"><i class="fa fa-envelope"></i> Private Messages <span class="label label-success">15</span></a></li>
-	                <li class="permit permit-admin"><a href="#"><i class="fa fa-group"></i> User Management</a></li>
-	                <li class="permit permit-admin"><a href="#"><i class="fa fa-bug"></i> Bug Reports <span class="label label-danger">8</span></a></li>
+	                <li class="active permit permit-all"><a href="dashboard.html">Dashboard</a></li>
+	                <li class="permit permit-premium"><a href="#">Private Messages <span class="label label-success">15</span></a></li>
+	                <li class="permit permit-admin"><a href="#">User Management</a></li>
+	                <li class="permit permit-admin"><a href="#">Bug Reports <span class="label label-danger">8</span></a></li>
 	                <li class="dropdown permit permit-all">
-	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account <i class="fa fa-caret-down"></i></a>
+	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account</a>
 	                    <ul class="dropdown-menu">
 	                        <li><a href="#">Account Details</a></li>
 	                        <li><a href="#" class="permit-revoke">Log Out</a></li>
@@ -67,6 +66,7 @@
 				<div class="permit permit-none">
 					<p>We're sorry, you need to <a href="#" class="permit-issue">login</a>.</p>
 				</div>
+				<div class="permit permit-force permit-free" data-permit-message='Locked Out'>You can't see this.</div>
 			</div>
 			<div class="col-sm-6">
 				<div class="permit permit-free">

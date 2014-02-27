@@ -88,13 +88,13 @@
             });
 
             // check to see if any permits exist, if not...
-            if(!permitExists()>=1){
+            if(permitExists()<1){
 
                 // show public content
                 $('.permit-none').show();
 
                 // show forced message content based on data-permit-message attribute
-                $('.permit-force').each(function(i, obj) {
+                $('.permit-force').each(function() {
                     var message = $(this).data('permit-message');
                     $(this).html(message).show();
                 });
@@ -123,7 +123,7 @@
 
         });
 
-    }
+    };
 
 })(jQuery);
 

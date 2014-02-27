@@ -3,8 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Permit.js Demo</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen">
 	<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
@@ -208,17 +207,48 @@ $(document).ready(function(){
 
         <section class="row">
             <div class="col-md-12">
+                <h2>FAQ and Troubleshooting</h2>
+            </div>
+            <div class="col-md-6">
+                <dl>
+                    <dt>I'm seeing a brief "flash of unstyled content" (FOUC) when I load pages with permit.js.</dt>
+                    <dd>That's because we're not using any server-side code to produce the pages. The plugin works by hiding or showing content based on the permit you've issued, which results in a brief flash of content before un-permitted content gets hidden. You can minimize this effect by adding a <code>.permit{ display:none}</code> to your CSS.</dd>
+                    <br>
+                    <dt>This is so easy. Can I use this on a production website to create a members-only area or somehow restrict access to content?</dt>
+                    <dd>Absolutely not. Do not in any situation use permit.js as a means of actually securing content. <u>The plugin is meant to be used for prototyping purposes only.</u>  The plugin uses a combination of javascript cookies and CSS to hide and show content. That's not at all secure and any code kiddy can easily "break-in".</dd>
+                    <br>
+                    <dt>It's not working when I try to run it locally.</dt>
+                    <dd>I figured this one out the hard way. Some browsers won't create cookies when using a file:// URI; see this <a href="http://stackoverflow.com/questions/6232331/setting-cookies-using-javascript-in-a-local-html-file">StackOverflow post</a>. Firefox seems to work fine, while Chrome does not. In addition, some of the plugin's settings (e.g., revokeDestination: 'http://'+window.location.hostname) will not behave properly when using the file:// URI. I recommend using either a local server environment (e.g, via WAMP, MAMP, Vagrant) or a remote server to avoid browser issues like these.</dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl>
+                    <dt>Can I issue multiple permits at the same time?</dt>
+                    <dd>In most cases, what you're probably trying to do can be done by applying multiple permit classes to the same element (e.g, .permit-free and .permit-premium). However, I can imagine a case where you might want to try very complex state combinations like free+online/offline and  premium+online/offline. That's not possible...yet.</dd>
+                    <br>
+                    <dt>Does the plugin having any public API methods or callbacks?</dt>
+                    <dd>Sorry, not yet. I hope to add features of theses sorts soon. If you've a coder, please consider contributing to the project via <a href="https://github.com/technotarek/permit">GitHub</a>.</dd>
+                    <br>
+                    <dt>How can I stay abreast of updates to this plugin?</dt>
+                    <dd>Watch or star the <a href="https://github.com/technotarek/permit">project's GitHub repo</a>.</dd>
+                    <br>
+                    <dt>How can I get support?</dt>
+                    <dd>Submit an issue on the <a href="https://github.com/technotarek/permit">official repo</a>. In general, I offer no warranties and can't guarantee any support. If you'd like to hire me to support this plugin or for any of my <a href="http://technotarek.com/">other skills</a>, please <a href="http://technotarek.com/contact">contact me</a>.</dd>
+                </dl>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="row">
+            <div class="col-md-12">
                 <h2>To Do</h2>
             </div>
             <div class="col-md-6">
                 <ul>
-                    <li>FAQ</li>
-                    <li>Warnings</li>
                     <li>Refactor js</li>
-                    <li>jslint</li>
                     <li>minify and repackage</li>
-                    <li>Add triggers/methods</li>
-                    <li>Build out demo</li>
+                    <li>Add public api methods</li>
                 </ul>
             </div>
         </section>
@@ -244,7 +274,7 @@ $(document).ready(function(){
 	<!-- GLOBAL CORE SCRIPTS -->
 	<script src="js/vendor/jquery-1.10.1.min.js"></script>
 	<script src="js/vendor/jquery.cookie.js"></script>
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
 	<script src="js/permit.js"></script>
     <script src="js/main.js"></script>
 </body>
