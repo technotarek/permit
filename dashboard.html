@@ -144,43 +144,44 @@
 
 	</div>
 
-<div style="position:fixed;bottom:10px;right:20px">
-    <button class="btn btn-danger btn-sm permit permit-all" data-toggle="modal" data-target=".modal-permit">PERMIT</button>
-</div>
+	<div style="position:fixed;bottom:10px;right:20px">
+	    <button class="btn btn-danger btn-sm permit permit-all" data-toggle="modal" data-target=".modal-permit">PERMIT</button>
+	</div>
 
 
-<!-- Large modal -->
-<div class="modal fade modal-permit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
+	<!-- Large modal -->
+	<div class="modal fade modal-permit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
 
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Permits</h4>
-            </div>
-            <div class="modal-body">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <h4 class="modal-title" id="myModalLabel">Permits</h4>
+	            </div>
+	            <div class="modal-body">
 
-                <select id="permit-options" class="form-control input-xs">
-                    <option value="free">Free</option>
-                    <option value="premium">Premium</option>
-                    <option value="admin">Admin</option>
-                </select>
+	                <select id="permit-options" class="form-control input-xs">
+	                    <option value="free">Free</option>
+	                    <option value="premium">Premium</option>
+	                    <option value="admin">Admin</option>
+	                </select>
 
-            </div>
-            <div class="modal-footer">
-                <button id="permit-reissue" type="button" class="btn btn-danger" data-dismiss="modal">Permit</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            </div>
+	            </div>
+	            <div class="modal-footer">
+	                <button id="permit-reissue" type="button" class="btn btn-danger" data-dismiss="modal">Permit</button>
+	                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	            </div>
 
-        </div>
-    </div>
-</div>
+	        </div>
+	    </div>
+	</div>
 
 	<!-- GLOBAL CORE SCRIPTS -->
 	<script src="js/vendor/jquery-1.10.1.min.js"></script>
-	<script src="js/vendor/jquery.cookie.js"></script>
+	<script src="js/vendor/jquery.cookie.min.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/permit.js"></script>
+	<script src="js/permit.min.js"></script>
 	<script src="js/main.js"></script>
+
 </body>
 </html>
