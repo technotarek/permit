@@ -93,13 +93,12 @@
 
             // builds dynamic permit issuing agent
             function buildPermitAgent(permits){
-                var mu = '<select id="permit-options" class="form-control input-sm">';
+                var a = '<select id="permit-options" class="form-control input-sm">';
                 $.each($(permits), function(index, value) {
-                    mu += '<option value="'+value+'">'+value+'</option>';
+                    a += '<option value="'+value+'">'+value+'</option>';
                 });
-                mu += '</select>';
-
-                $('#permit-agent').html(mu);
+                a += '</select>';
+                $('#permit-agent').html(a);
             }
 
             buildPermitAgent(settings.permits);
