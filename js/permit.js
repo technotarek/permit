@@ -15,6 +15,13 @@
 
         $(document).ready(function() {
 
+            // hide default permitted content
+            $('.permit-all, .permit-force').hide();
+            // hide user specified permitted content
+            $.each($(settings.permits), function(index, value) {
+                $('.permit-'+value).hide();
+            });
+
             var cPrefix = 'permit_';
 
             function issuePermit(permit) {
@@ -49,30 +56,11 @@
                 return i;
             }
 
-            // hide default permits
-            $('.permit-all, .permit-force').hide();
-
-            // hide user specified permits
-            $.each($(settings.permits), function(index, value) {
-                $('.permit-'+value).hide();
-            });
-
-            // Issue default permit
-            $('.permit-issue').on('click', function()
-            {
-                issuePermit(settings.permits[0]);
-            });
-
-            // Iterate through user specified permits
+            // Iterate through user specified permits to show permitted content
             $.each($(settings.permits), function(index, value) {
 
-                // hide/show appropriate content
                 if($.cookie(cPrefix+settings.permits[index]))
                 {
-                    // if any permit exists, hide permit-less state content
-                    $('.permit-none').hide();
-                    // if any permit exists, show globally permitted state content
-                    $('.permit-all').show();
                     // hide all permit content except selected permits
                     for(var i=0;i<settings.permits.length;i++)
                     {
@@ -89,33 +77,40 @@
 
             // check to see if any permits exist, if not...
             if(permitExists()<1){
-
                 // show public content
                 $('.permit-none').show();
-
                 // show forced message content based on data-permit-message attribute
                 $('.permit-force').each(function() {
                     var message = $(this).data('permit-message');
                     $(this).html(message).show();
                 });
+            }else{
+                // if any permit exists, hide permit-less state content
+                $('.permit-none').hide();
+                // if any permit exists, show globally permitted state content
+                $('.permit-all').show();
             }
 
-            // permit
+            // Issue default permit
+            $('.permit-issue').on('click', function()
+            {
+                issuePermit(settings.permits[0]);
+            });
+
+            // Issue new permit
             $('#permit-reissue').on('click',function(){
 
                 // remove all existing permits
                 revokeAllPermits(settings.permits);
-
                 // determine selected permit
                 var permit = $('#permit-options').val();
-
                 // issue new permit
                 issuePermit(permit);
 
             });
 
-            // revoke all permits and redirect
-            $('.permit-revoke').click(function()
+            // Revoke all permits and redirect
+            $('.permit-revoke').on('click',function()
             {
                 revokeAllPermits(settings.permits);
                 window.location.href = settings.revokeDestination;
@@ -126,4 +121,3 @@
     };
 
 })(jQuery);
-
