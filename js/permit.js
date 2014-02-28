@@ -9,7 +9,7 @@
     $.permit = function(options){
         settings = jQuery.extend({
             permits: ['admin'], // value: array permit levels, default to admin; sets the available permission levels
-            issueDestination: 'reload',
+            reissueDestination: 'reload',
             revokeDestination: 'http://'+window.location.hostname
         },options);
 
@@ -63,12 +63,12 @@
                 // create the permit, give it a value of 1
                 $.cookie(cPrefix+permit, 1);
                 // either reload the page or redirect to location based on user settings
-                if(settings.issueDestination === 'reload')
+                if(settings.reissueDestination === 'reload')
                 {
                     window.location.reload();
                 }else
                 {
-                    window.location.href = settings.issueDestination;
+                    window.location.href = settings.reissueDestination;
                 }
             }
 

@@ -33,7 +33,9 @@
             <div class="col-md-5">
                 <h3>Basic Demo</h3>
                 <div class="alert alert-info permit permit-none">You're currently logged out.</div>
-                <button class="btn btn-primary btn-lg permit-none permit-issue">Log In</button>
+                <form action="dashboard.html" method="post">
+                    <button class="btn btn-primary btn-lg permit-none permit-issue">Log In</button>
+                </form>
 
                 <div class="alert alert-danger permit permit-all">You're still logged in.</div>
                 <button class="btn btn-danger btn-lg permit permit-revoke permit-all">Log Out</button>
@@ -127,7 +129,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     $.permit({
         permits: ['free','premium','admin'],
-        issueDestination: 'reload',
+        reissueDestination: 'reload',
         revokeDestination: 'http://' + window.location.hostname + '/permit.html'
     });
 });
@@ -239,7 +241,7 @@ $(document).ready(function(){
                             <td>['free','premium','admin']</td>
                         </tr>
                         <tr>
-                            <th>issueDestination</th>
+                            <th>reissueDestination</th>
                             <td>Specifies the action to be taken after an element that has the .permit-reissue class is clicked. That is, the action to be taken when a new permit is issued. Defaults to a javascript-enabled page reload (i.e., it uses 'self' as the destination). Otherwise it redirects to the specified location.
                             </td>
                             <td>'reload'</td>
