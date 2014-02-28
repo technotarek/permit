@@ -3,7 +3,7 @@ $(document).ready(function()
     $.permit(
         {
             permits: ['free','premium','admin'],
-            issueDestination: 'dashboard.html',
+            issueDestination: 'reload',
             revokeDestination: 'http://' + window.location.hostname + '/permit.html'
         }
     );
