@@ -7,6 +7,14 @@ Maybe your website has certain features that are only available to logged-in mem
 
 Permit.js makes simulating those different situations a breeze. It's designed for use by anyone that does interactive protype work in HTML and CSS, including information architects and other user interface and user experience (UI/UX) professionals.
 
+### Use Cases
+*   Logged-Out / Logged-In
+*   Free / Paid
+*   Online / Offline
+*   Writer / Editor / Publisher
+*   User / Moderator / Administrator
+*   Staff / Manager / Executive
+*   English / French / Spanish
 
 ## Demo
 *	http://www.technotarek.com/permit/permit.html
