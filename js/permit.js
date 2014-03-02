@@ -1,6 +1,6 @@
 /*
 * Permit.js
-* @version		0.1
+* @version		0.2
 * @copyright	Tarek Anandan (http://www.technotarek.com)
 */
 ;(function($) {
@@ -9,8 +9,7 @@
     $.permit = function(options){
         settings = jQuery.extend({
             permits: ['admin'], // value: array permit levels, default to admin; sets the available permission levels
-            reissueDestination: 'reload',
-            revokeDestination: 'http://'+window.location.hostname
+            reissueDestination: 'reload'
         },options);
 
         $(document).ready(function() {
@@ -24,9 +23,9 @@
 
             var cPrefix = 'permit_';
 
-            // Iterate through user specified permits to show permitted content
             $.each($(settings.permits), function(index, value) {
 
+                // Iterate through user specified permits to show permitted content
                 if($.cookie(cPrefix+settings.permits[index]))
                 {
                     // hide all permit content except selected permits
@@ -40,6 +39,22 @@
                     // show permitted content
                     $('.permit-'+value).show();
                 }
+
+                // Create custom permit issuing triggers
+                var triggerEvent = ($('.permit-issue-'+value).data('permit-trigger') ? $('.permit-issue-'+value).data('permit-trigger') : 'click');
+                $('.permit-issue-'+value).on(triggerEvent,function() {
+                    var destination = $(this).data('permit-destination');
+                    revokeAllPermits(settings.permits);
+                    issuePermit(value,destination);
+                });
+
+                // Create custom permit revoking triggers
+                var triggerEvent = ($('.permit-revoke-'+value).data('permit-trigger') ? $('.permit-revoke-'+value).data('permit-trigger') : 'click');
+                $('.permit-revoke-'+value).on(triggerEvent,function() {
+                    var destination = $(this).data('permit-destination');
+                    var newPermit = $(this).data('permit-new');
+                    revokePermit(value,newPermit,destination);
+                });
 
             });
 
@@ -59,25 +74,40 @@
                 $('.permit-all').show();
             }
 
-            function issuePermit(permit) {
-                // create the permit, give it a value of 1
-                $.cookie(cPrefix+permit, 1);
-                // either reload the page or redirect to location based on user settings
-                if(settings.reissueDestination === 'reload')
-                {
+            // This function handles all reloads/redirects after permits are issued or revoked
+            function director(destination){
+                if(destination){
+                    window.location.href = destination;
+                }else{
                     window.location.reload();
-                }else
-                {
-                    window.location.href = settings.reissueDestination;
                 }
             }
 
+            // This function issues new permits
+            function issuePermit(permit,destination) {
+                // create the permit, give it a value of 1
+                $.cookie(cPrefix+permit, 1);
+                director(destination);
+            }
+
+            // This function revokes a specific permit
+            function revokePermit(permit,newPermit,destination){
+                $.removeCookie(cPrefix+permit);
+                // if a new permit type is specified, issue that
+                if(newPermit){
+                    issuePermit(newPermit);
+                }
+                director(destination);
+            }
+
+            // This function revokes all permits
             function revokeAllPermits(permits){
                 $.each($(permits), function(index, value) {
                     $.removeCookie(cPrefix+value);
                 });
             }
 
+            // This function checks to see if any permits exist
             function permitExists(permit){
                 // if no parameter is passed to the function, set the parameter equal to the permits setting object
                 permit = typeof permit !== 'undefined' ? permit : settings.permits;
@@ -91,7 +121,7 @@
                 return i;
             }
 
-            // builds dynamic permit issuing agent
+            // This function builds the dynamic permit issuing agent to help issue new permits
             function buildPermitAgent(permits){
                 var a = '<select id="permit-options" class="form-control input-sm">';
                 $.each($(permits), function(index, value) {
@@ -103,13 +133,7 @@
 
             buildPermitAgent(settings.permits);
 
-            // Issue default permit
-            $('.permit-issue').on('click', function()
-            {
-                issuePermit(settings.permits[0]);
-            });
-
-            // Issue new permit
+            // Issue new permit via Agent
             $('.permit-reissue').on('click',function(){
 
                 // remove all existing permits
@@ -122,10 +146,11 @@
             });
 
             // Revoke all permits and redirect
-            $('.permit-revoke').on('click',function()
+            $('.permit-revoke-all').on('click',function()
             {
+                var destination = $(this).data('permit-destination');
                 revokeAllPermits(settings.permits);
-                window.location.href = settings.revokeDestination;
+                director(destination);
             });
 
         });

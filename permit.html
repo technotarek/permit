@@ -33,12 +33,10 @@
             <div class="col-md-5">
                 <h3>Basic Demo</h3>
                 <div class="alert alert-info permit permit-none">You're currently logged out.</div>
-                <form action="dashboard.html" method="post">
-                    <button class="btn btn-primary btn-lg permit-none permit-issue">Log In</button>
-                </form>
+                <button class="btn btn-primary btn-lg permit-none permit-issue-free" data-permit-destination='dashboard.html'>Log In</button>
 
-                <div class="alert alert-danger permit permit-all">You're still logged in.</div>
-                <button class="btn btn-danger btn-lg permit permit-revoke permit-all">Log Out</button>
+                <div class="alert alert-danger permit permit-all">You're still logged in. <a href="dashboard.html">Return to the demo.</a></div>
+                <button class="btn btn-danger btn-lg permit permit-revoke-all permit-all">Log Out</button>
             </div>
         </section>
 
@@ -99,7 +97,7 @@
 <h2>Usage</h2>
 
 <h3><span class="label label-info label-lg">1</span> Include dependencies and permit.js</h3>
-<p>Permit.js requires jQuery and the <a href="https://github.com/carhartl/jquery-cookie" target="_blank">jquery.cookie plugin</a>. You must load those before you load permit.js.</p>
+<p class="lead">Permit.js requires jQuery and the <a href="https://github.com/carhartl/jquery-cookie" target="_blank">jquery.cookie plugin</a>. You must load those before you load permit.js.</p>
 <pre>
 &lt;script src="js/jquery-1.10.1.min.js"&gt;&lt;/script&gt;
 &lt;script src="js/jquery.cookie.js"&gt;&lt;/script&gt;
@@ -113,7 +111,7 @@
 
 <br>
 <h3><span class="label label-info label-lg">2</span> Instantiate</h3>
-<p>The only required setting is the 'permits' setting. This is where you specify your states. The first state in the permits object is referred to as the default state.</p>
+<p class="lead">The only required setting is the 'permits' setting. This is where you specify your states. The first state in the permits object is referred to as the default state.</p>
 <pre>
 $(document).ready(function(){
     $.permit({
@@ -122,22 +120,11 @@ $(document).ready(function(){
 });
 </pre>
 
-<br>
-<h4>Or, Instantiate with Additional Settings</h4>
-<p>Use Permit's <a href="#options">optional settings</a> to customize its behavior.</p>
-<pre>
-$(document).ready(function(){
-    $.permit({
-        permits: ['free','premium','admin'],
-        reissueDestination: 'reload',
-        revokeDestination: 'http://' + window.location.hostname + '/permit.html'
-    });
-});
-</pre>
+<p>Currently, Permit has one additionl <a href="#options">optional setting</a> to customize its behavior.</p>
 
 <br>
 <h3><span class="label label-info label-lg">3</span> Create a "Permits Agent"</h3>
-<p>Now you need an agent to help you issue your permits. Create a container with an ID of 'permit-agent'. When the script is instantiated, this container will be populated with a dropdown of your available permits. A new permit is issued when you click on an element with a class of 'permit-reissue', which takes the value from your Permits Agent.</p>
+<p class="lead">Now you need an agent to help you issue your permits. Create a container with an ID of 'permit-agent'. When the script is instantiated, this container will be populated with a dropdown of your available permits. A new permit is issued when you click on an element with a class of 'permit-reissue', which takes the value from your Permits Agent.</p>
 
 <pre>
 &lt;div&gt;
@@ -152,7 +139,9 @@ $(document).ready(function(){
 
 <br>
 <h3><span class="label label-info label-lg">4</span> Apply CSS</h3>
-<p>Permit.js creates several personalized helper classes based on instantiation settings. All you need to do is apply a generic 'permit' class plus one of your personalized permit  classes to your HTML markup. The following example shows how you might apply your CSS classes in the case of three states: free, premium, admin.</p>
+<p class="lead">Permit.js creates several personalized helper classes based on instantiation settings. All you need to do is apply a generic 'permit' class plus one of your personalized permit  classes to your HTML markup. The following example shows how you might apply your CSS classes in the case of three states: free, premium, admin.</p>
+
+<h4>Custom Classes</h4>
 <pre>
 &lt;div class="permit permit-<i>free</i>"&gt;
     &lt;p&gt;Visible to <i>free</i> users (only).&lt;/p&gt;
@@ -176,40 +165,72 @@ $(document).ready(function(){
 &lt;/div&gt;
 </pre>
 
-
 <br>
-<h4>Additional Helper Classes</h4>
-<p>Permit.js provides additional helper classes that allow you to create even more complex, interactive experiences.</p>
-<div class="row">
-    <div class="col-sm-8">
-        <dl>
-            <dt>.permit-issue</dt>
-            <dd>Apply this class to any clickable element (e.g. a link or a button) to issue the default permit (the first specified permit in the <i>permits</i> setting). You might do this to simulate a user log-in button.</dd>
-            <br>
-            <dt>.permit-reissue</dt>
-            <dd>Apply this class to any clickable element (e.g. a link or a button) to issue a new permit. This works in coordination with the <i>permits agent</i>.</dd>
-            <br>
-            <dt>.permit-revoke</dt>
-            <dd>Apply this class to any clickable element (e.g. a link or a button) to revoke all permits, as you might to do to simulate a user log-out button.</dd>
-            <br>
-            <dt>.permit-all</dt>
-            <dd>Display for all states, when <i>any</i> permit has been issued (e.g., displays to all logged-in users).</dd>
-            <br>
-            <dt>.permit-none</dt>
-            <dd>Display only when no permits have been issued (e.g., display only to non-logged in users).</dd>
-            <br>
-            <dt>.permit-force</dt>
-            <dd>Apply this class, along with a custom <i>data-messsage</i> attribute, to replace the element's content with a custom message. For example, apply this class to replace a block of premium features with "Upgrade Now". The content in the data attribute gets injected using jQuery's html() method.
-            <br><br>
+<h4>Default Classes</h4>
+<p>In addition, you can use .permit-all and .permit-none classes.</p>
 <pre>
-&lt;div class="permit permit-<i>force</i> permit-<i>premium</i>" data-permit-message="Please <a href='#'>upgrade</a>"&gt;
+&lt;div class="permit permit-<i>none</i>"&gt;
+    &lt;p&gt;Visible only when no permits have been issued (e.g, in a fully logged-out state).&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="permit permit-<i>all</i>"&gt;
+    &lt;p&gt;Visible to all permit levels. Invisible if no permits are present.&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+
+
+</div>
+</section>
+
+<hr>
+
+<section class="row">
+    <div class="col-sm-12">
+        <h2>Additional Helper Classes and Advanced Usage</h2>
+
+<p class="lead">Permit.js provides additional helper classes that allow you to create even more complex, interactive experiences.</p>
+<div class="row">
+    <div class="col-sm-12 col-md-8">
+        <h4>.permit-issue-[permitName]</h4>
+        <p>Apply this class to any clickable element (e.g. a link or a button) to issue a permit. Replace [permitName] with one of the permits you specified in the <i>permits</i> setting (e.g., permit-issue-premium). You would do this in a variety of situations such as to simulate logging-in, an upgrade, or for switching from an online to offline mode. When using this class, two optional data attributes are also available: <i>data-permit-trigger</i> and <i>data-permit-destination</i>.</p>
+
+            <div class="well">
+                <p><i>data-permit-trigger (optional)</i></p>
+                <p>By default, when you apply the .permit-issue-[permit] class to an element, clicking on that element will issue the permit. You can change the default trigger from a <i>click</i> to any other <a href="http://api.jquery.com/category/events/mouse-events/" target="_blank">jQuery mouse event</a> by specifying it here. For example, you could change the event to 'hover' or 'dblclick'.</p>
+
+                <p>Example<br><code>&lt;a class="permit-issue-premium" data-permit-trigger="hover"&gt;Upgrade&lt;/a&gt;</code></p>
+            </div>
+
+
+            <div class="well">
+                <p><i>data-permit-destination (optional)</i></p>
+                <p>Set this attribute to a url to redirect the user to that url after execution. You can set is to a local, relative path (homepage.html) or a fully valid url (http://cnn.com). If you exclude this attribute, the current page will reload.</p>
+                <p>Example<br><code>&lt;a class="permit-issue-premium" data-permit-destination="credit-card.html"&gt;Upgrade&lt;/a&gt;</code></p>
+            </div>
+
+        <h4>.permit-revoke-all</h4>
+        <p>Apply this class to any clickable element (e.g. a link or a button) to revoke all permits, as you might do to simulate a user log-out button. When using this class, you may also use the data-permit-trigger and data-permit-destination attributes described under .permit-issue-[permitName].</p>
+
+
+            <!--
+            <br>
+            <dt>.permit-revoke-[permitName]</dt>
+            <dd>Apply this class to any clickable element (e.g. a link or a button) to revoke all permits, as you might to do to simulate a user log-out button.</dd>
+            -->
+
+        <h4>.permit-force</h4>
+        <p>Apply this class, along with a custom <i>data-messsage</i> attribute, to replace the element's content with a custom message. For example, apply this class to replace a block of premium features with "Upgrade Now". The content in the data attribute gets injected using jQuery's html() method, so you may include html inside the message attribute.</p>
+
+            <div class="well">
+                <p><i>data-permit-message</i></p>
+                <p>Set this attribute to specify the custom message that will appear if the required permit level(s) are not present.</p>
+<pre>
+&lt;div class="permit permit-<i>force</i> permit-<i>premium</i>" data-permit-message="Please &lt;a href='#'&gt;upgrade&lt;/a&gt;"&gt;
     &lt;p&gt;This content will only show when a premium permit is present, otherwise it shows the message defined in the data-permit-message attribute.&lt;/p&gt;
 &lt;/div&gt;
 </pre>
-            </dd>
+            </div>
 
-
-        </dl>
 
     </div>
 </div>
@@ -220,7 +241,7 @@ $(document).ready(function(){
 
         <hr>
 
-        <section class="row">
+        <section class="row" id="options">
             <div class="col-sm-12">
                 <h2>Settings &amp; Options</h2>
 
@@ -242,16 +263,10 @@ $(document).ready(function(){
                         </tr>
                         <tr>
                             <th>reissueDestination</th>
-                            <td>Specifies the action to be taken after an element that has the .permit-reissue class is clicked. That is, the action to be taken when a new permit is issued. Defaults to a javascript-enabled page reload (i.e., it uses 'self' as the destination). Otherwise it redirects to the specified location.
+                            <td>Specifies the action to be taken when a new permit is issued using the permits agent. Defaults to a javascript-enabled page reload. Otherwise it redirects to the specified location.
                             </td>
                             <td>'reload'</td>
                             <td>'dashboard.html'</td>
-                        </tr>
-                        <tr>
-                            <th>revokeDestination</th>
-                            <td>Specifies the location the browser will go to after an element with .permit-revoke is clicked (e.g., taking the user back to the homepage upon clicking on the log-out button). Defaults to the root of the current domain. Accepts any valid url.</td>
-                            <td>'http://'+window.location.hostname</td>
-                            <td>'http://mysite.com'</td>
                         </tr>
                     </tbody>
                 </table>
@@ -267,11 +282,11 @@ $(document).ready(function(){
             </div>
             <div class="col-md-6">
                 <dl>
+                    <dt>Can I use this on a production website to create a members-only area or somehow restrict access to content?</dt>
+                    <dd>Absolutely not. Do not in any situation use permit.js as a means of actually securing content. <u>The plugin is meant to be used for prototyping purposes only.</u>  The plugin uses a combination of javascript cookies and CSS to hide and show content. That's not at all secure and any code kiddy can easily "break-in".</dd>
+                    <br>
                     <dt>I'm seeing a brief "flash of unstyled content" (FOUC) when I load pages with permit.js.</dt>
                     <dd>That's because we're not using any server-side code to produce the pages. The plugin works by hiding or showing content based on the permit you've issued, which results in a brief flash of content before un-permitted content gets hidden. You can minimize this effect by adding a <code>.permit{ display:none}</code> to your CSS.</dd>
-                    <br>
-                    <dt>This is so easy. Can I use this on a production website to create a members-only area or somehow restrict access to content?</dt>
-                    <dd>Absolutely not. Do not in any situation use permit.js as a means of actually securing content. <u>The plugin is meant to be used for prototyping purposes only.</u>  The plugin uses a combination of javascript cookies and CSS to hide and show content. That's not at all secure and any code kiddy can easily "break-in".</dd>
                     <br>
                     <dt>It's not working when I try to run it locally.</dt>
                     <dd>I figured this one out the hard way. Some browsers won't create cookies when using a file:// URI; see this <a href="http://stackoverflow.com/questions/6232331/setting-cookies-using-javascript-in-a-local-html-file">StackOverflow post</a>. Firefox seems to work fine, while Chrome does not. In addition, some of the plugin's settings (e.g., revokeDestination: 'http://'+window.location.hostname) will not behave properly when using the file:// URI. I recommend using either a local server environment (e.g, via WAMP, MAMP, Vagrant) or a remote server to avoid browser issues like these.</dd>

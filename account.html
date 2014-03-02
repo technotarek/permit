@@ -25,12 +25,12 @@
 	        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 	            <ul class="nav navbar-nav">
-	                <li class="active permit permit-all"><a href="dashboard.html">Dashboard</a></li>
-	                <li class="dropdown permit permit-all"><a href="account.html">My Account</a></li>
+	                <li class="permit permit-all"><a href="dashboard.html">Dashboard</a></li>
+	                <li class="active dropdown permit permit-all"><a href="account.html">My Account</a></li>
 	                <li class="permit permit-premium"><a href="#">Private Messages <span class="label label-info">15</span></a></li>
 	                <li class="permit permit-admin"><a href="#">User Management</a></li>
 	                <li class="permit permit-admin"><a href="#">Bug Reports <span class="label label-danger">8</span></a></li>
-	                <li class="permit permit-free permit-issue-premium" data-permit-trigger='click'><a href="#"><span class="label label-info">Upgrade Now</span></a></li>
+	                <li class="permit permit-free permit-issue-premium" data-permit-destination='dashboard.html'><a href="#"><span class="label label-info">Upgrade Now</span></a></li>
 	            </ul>
 
 			<button type="button" class="btn btn-primary btn-sm navbar-btn pull-right permit permit-none permit-issue">Log In</button>
@@ -74,10 +74,10 @@
 			</div>
 			<div class="col-sm-6">
 				<div class="permit permit-free">
-					<h3>Welcome to Your Free Member Dashboard</h3>
-					<p class="lead">This demo has three account levels: free, premium, and admin. <i>You're currently simulating a "free" account.</i></p>
-					<p class="lead">Click the upgrade button in the navigation bar to issue a new permit and simulate a "premium" account.</p>
-					<p class="lead">Alternatively, use the Permit button in the lower right to try any of the available accounts levels.</p>
+					<h3>Free Member</h3>
+					<h4>Washington, DC</h4>
+					<p class="lead">You might want to consider upgrading. The benefits are endless.</p>
+					<button class="btn btn-info btn-lg permit-issue-premium" data-permit-destination="dashboard.html">Upgrade!</button>
 					<br>
 
 					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -91,9 +91,14 @@
 					</script>
 				</div>
 				<div class="permit permit-premium">
-					<h3>Premium Members Dashboard</h3>
-					<p class="lead">Are things becoming a bit more clear? Notice how the navigation menu has changed.</p>
-					<p class="lead">Keep going. Simulate an admin account by using the Permit button in the lower right corner.</p>
+					<h3>Premium Member</h3>
+					<p>Washington, DC</p>
+
+					<p class="lead">Thanks for being a premium member.</p>
+					<p class="lead">Wait, what?! You want to cancel your premium membership? If you must.</p>
+					<button class="btn btn-info permit-issue-free" data-permit-destination="dashboard.html">Cancel Premium Membership</button>
+
+
 					<br>
 
 					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -107,36 +112,32 @@
 					</script>
 				</div>
 				<div class="permit permit-admin">
-					<h3>You're on top of the world!</h3>
-					<p class="lead">Remember, Permit.js is persistent, so you can use it across a multipage-prototype or app. If you haven't already done so, take a look at the My Account page.</p>
-					<p class="lead">Here are some possible use cases:</p>
-					<ul class="lead">
-						<li>Logged-Out / Logged-In</li>
-						<li>Free / Paid</li>
-						<li>Online / Offline</li>
-						<li>Writer / Editor / Publisher</li>
-						<li>User / Moderator / Administrator</li>
-						<li>Staff / Manager / Executive</li>
-						<li>English / French / Spanish</li>
-					</ul>
-					<p class="lead">Return to the <a href="permit.html">Permit.js homepage</a>.</p>
+					<h3>Administrator</h3>
+					<p>Digital Nomad</p>
+
+					<p class="lead">Your work is under appreciated.</p>
+					<br>
+
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- Permit.js 1 -->
+					<ins class="adsbygoogle"
+					     style="display:inline-block;width:468px;height:60px"
+					     data-ad-client="ca-pub-7124069219813221"
+					     data-ad-slot="1845154836"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+			</div>
+			<div class="col-sm-2 col-sm-offset-4">
+				<div class="permit permit-admin">
+					<h4>Admin Tools</h4>
+					<button class="btn btn-warning btn-block">User Management</button>
+					<br>
+					<button class="btn btn-danger btn-block">Bug Reports</button>
 				</div>
 			</div>
 
-			<div class="col-sm-6" style="position:relative;top:-100px">
-				<div class="permit permit-free">
-					<br>
-					<img src="img/sheep-free.jpg" class="img-circle img-responsive center-block">
-				</div>
-				<div class="permit permit-premium">
-					<br>
-					<img src="img/sheep-premium.jpg" class="img-circle img-responsive center-block">
-				</div>
-				<div class="permit permit-admin">
-					<br>
-					<img src="img/sheep-admin.jpg" class="img-circle img-responsive center-block">
-				</div>
-			</div>
 		</section>
 
         <hr>

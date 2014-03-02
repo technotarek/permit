@@ -28,6 +28,10 @@ Please see http://www.technotarek.com/permit/permit.html
 
 ## Change Log
 
+###### v0.2 (3/2/2014)
+*   Refactored JS
+*   Added new permit-issue classes with custom events and redirect options
+
 ###### v0.1 (2/2014)
 *	First release
 
