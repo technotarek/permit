@@ -16,7 +16,7 @@
 					<h1>
                         <img src="img/approved.png" style="position:absolute;left:35%;top:-30px">Permit.js
                     </h1>
-                    <p>Permit.js is a jQuery plugin that  makes building interactive, multi-state prototypes for websites and apps easy.</p>
+                    <p>Permit.js is a jQuery plugin that makes building interactive, multi-state prototypes for websites and apps easy.</p>
 				</div>
 			</div>
 		</div>
@@ -26,7 +26,7 @@
 
         <section class="row">
             <div class="col-md-7">
-                <p class="lead">Maybe your website has certain features that are only available to logged-in members and other features only available only to administrators. Or perhaps your app has different features depending on whether it's on- or offline. Or what about the free versus paid versions? These are all examples of state.</p>
+                <p class="lead">Maybe your website has certain features that are only available to logged-in members and other features only available only to administrators? Or perhaps your app has different features depending on whether it's on- or offline? Or what about the free versus paid versions? These are all examples of states.</p>
                 <p class="lead">Permit.js makes simulating those different situations a breeze. It's designed for use by anyone that does interactive prototype work in HTML and CSS, including information architects and other user interface and user experience (UI/UX) professionals.</p>
                 </ul>
             </div>
@@ -43,25 +43,24 @@
 
         <section class="row">
             <div class="col-sm-12">
-                <p class="lead">Use cases:</p>
+                <p class="lead">Use Cases:</p>
             </div>
                 <div class="col-sm-4">
                     <ul class="lead">
-                        <li>Logged-Out / Logged-In</li>
-                        <li>Free / Paid</li>
-                        <li>Online / Offline</li>
+                        <li>Authentication: Logged-Out / Logged-In</li>
+                        <li>Membership: Free / Paid</li>
                     </ul>
                 </div>
                 <div class="col-sm-4">
                     <ul class="lead">
-                        <li>Writer / Editor / Publisher</li>
-                        <li>User / Moderator / Administrator</li>
+                        <li>Connectivity: Online / Offline</li>
+                        <li>Roles: Writer / Editor / Publisher</li>
                     </ul>
                 </div>
                 <div class="col-sm-4">
                     <ul class="lead">
-                        <li>Staff / Manager / Executive</li>
-                        <li>English / French / Spanish</li>
+                        <li>Permissions: User / Moderator / Administrator</li>
+                        <li>Content: English / French / Spanish</li>
                     </ul>
                 </div>
         </section>
@@ -74,7 +73,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <h3 class="text-center lead">Take Prototypes to the Next Level</h3>
-                        <p class="text-center">Use Permit.js to improve the ability for your prototypes to simulate complex, interactive behaviors.</p>
+                        <p class="text-center">Use Permit.js to improve how your prototypes simulate complex, interactive behaviors.</p>
                     </div>
                     <div class="col-sm-4">
                         <h3 class="text-center lead">Easy to Implement</h3>
@@ -82,7 +81,7 @@
                     </div>
                     <div class="col-sm-4">
                         <h3 class="text-center lead">Persistent</h3>
-                        <p class="text-center">Permit's states persist across pages and section of your website/app. "Issue a permit" and then surf around your entire site to get the full user experience.</p>
+                        <p class="text-center">Permit.js persists across pages and sections of your website/app. "Issue a permit" and then surf around your entire site to get the full user experience for anyone of your states.</p>
                     </div>
                 </div>
 
@@ -111,7 +110,7 @@
 
 <br>
 <h3><span class="label label-info label-lg">2</span> Instantiate</h3>
-<p class="lead">The only required setting is the 'permits' setting. This is where you specify your states. The first state in the permits object is referred to as the default state.</p>
+<p class="lead">The only required setting is the 'permits' setting. This is where you specify your states.</p>
 <pre>
 $(document).ready(function(){
     $.permit({
@@ -120,26 +119,26 @@ $(document).ready(function(){
 });
 </pre>
 
-<p>Currently, Permit has one additionl <a href="#options">optional setting</a> to customize its behavior.</p>
+<p>Currently, the plugin has one additional <a href="#options">optional setting</a>.</p>
 
 <br>
 <h3><span class="label label-info label-lg">3</span> Create a "Permits Agent"</h3>
-<p class="lead">Now you need an agent to help you issue your permits. Create a container with an ID of 'permit-agent'. When the script is instantiated, this container will be populated with a dropdown of your available permits. A new permit is issued when you click on an element with a class of 'permit-reissue', which takes the value from your Permits Agent.</p>
+<p class="lead">The "agent" will help you issue your permits and change between your states. Create a container with an ID of 'permit-agent'. When the script is instantiated, this container will be populated with a dropdown of your available permits. The agent issues a new permit  when you click on an element with a class of 'permit-reissue'.</p>
 
 <pre>
 &lt;div&gt;
     &lt;div id="permit-agent"&gt;
-        &lt;!-- A dropdown with your permit options will get inserted here. --&gt;
+        &lt;!-- A dropdown with your states. --&gt;
     &lt;/div&gt;
     &lt;button class="permit-reissue"&gt;Issue Permit&lt;/button&gt;
 &lt;/div&gt;
 </pre>
 
-<p>The demo includes the agent container inside a Twitter Bootstrap modal. This is purely for effect. You may place your agent anywhere.</p>
+<p>The demo includes the agent inside a Twitter Bootstrap modal. This is purely for effect. You may place your agent anywhere.</p>
 
 <br>
 <h3><span class="label label-info label-lg">4</span> Apply CSS</h3>
-<p class="lead">Permit.js creates several personalized helper classes based on instantiation settings. All you need to do is apply a generic 'permit' class plus one of your personalized permit  classes to your HTML markup. The following example shows how you might apply your CSS classes in the case of three states: free, premium, admin.</p>
+<p class="lead">Permit.js creates several personalized helper classes based on your instantiation settings. All you need to do is apply a generic 'permit' class plus one of these personalized classes to your HTML markup. The following example shows how you might apply your CSS classes in the case of three states: free, premium, admin.</p>
 
 <h4>Custom Classes</h4>
 <pre>
@@ -192,11 +191,11 @@ $(document).ready(function(){
 <div class="row">
     <div class="col-sm-12 col-md-8">
         <h4>.permit-issue-[permitName]</h4>
-        <p>Apply this class to any clickable element (e.g. a link or a button) to issue a permit. Replace [permitName] with one of the permits you specified in the <i>permits</i> setting (e.g., permit-issue-premium). You would do this in a variety of situations such as to simulate logging-in, an upgrade, or for switching from an online to offline mode. When using this class, two optional data attributes are also available: <i>data-permit-trigger</i> and <i>data-permit-destination</i>.</p>
+        <p>Apply this class to an element (e.g. a button) to issue a permit. Replace [permitName] with one of the states you specified in the <i>permits</i> setting (e.g., permit-issue-<i>premium</i>). By default, the permit will be issued by clicking on the element. The permit that was in place prior to clicking on the element is revoked. You would use this in a variety of situations such as to simulate logging-in, upgrading, or for switching from online to offline mode. When using this class, two optional data attributes are also available: <i>data-permit-trigger</i> and <i>data-permit-destination</i>.</p>
 
             <div class="well">
                 <p><i>data-permit-trigger (optional)</i></p>
-                <p>By default, when you apply the .permit-issue-[permit] class to an element, clicking on that element will issue the permit. You can change the default trigger from a <i>click</i> to any other <a href="http://api.jquery.com/category/events/mouse-events/" target="_blank">jQuery mouse event</a> by specifying it here. For example, you could change the event to 'hover' or 'dblclick'.</p>
+                <p>You can change the default trigger from a <i>click</i> to any other <a href="http://api.jquery.com/category/events/mouse-events/" target="_blank">jQuery mouse event</a> by specifying it here. For example, you could change the event to 'hover' or 'dblclick'.</p>
 
                 <p>Example<br><code>&lt;a class="permit-issue-premium" data-permit-trigger="hover"&gt;Upgrade&lt;/a&gt;</code></p>
             </div>
@@ -204,12 +203,12 @@ $(document).ready(function(){
 
             <div class="well">
                 <p><i>data-permit-destination (optional)</i></p>
-                <p>Set this attribute to a url to redirect the user to that url after execution. You can set is to a local, relative path (homepage.html) or a fully valid url (http://cnn.com). If you exclude this attribute, the current page will reload.</p>
+                <p>Set this attribute to a url to redirect the user to that location after execution. You can set this to a local, relative path (e.g., homepage.html) or to a fully valid url (e.g., http://cnn.com). If you exclude this attribute, the current page will reload.</p>
                 <p>Example<br><code>&lt;a class="permit-issue-premium" data-permit-destination="credit-card.html"&gt;Upgrade&lt;/a&gt;</code></p>
             </div>
 
         <h4>.permit-revoke-all</h4>
-        <p>Apply this class to any clickable element (e.g. a link or a button) to revoke all permits, as you might do to simulate a user log-out button. When using this class, you may also use the data-permit-trigger and data-permit-destination attributes described under .permit-issue-[permitName].</p>
+        <p>Apply this class to an element (e.g. a button) to revoke all permits. By default, it is trigger on a click event. You might use this to simulate a user log-out button. When using this class, you may use the same data-permit-trigger and data-permit-destination attributes described under .permit-issue-[permitName].</p>
 
 
             <!--
@@ -226,7 +225,7 @@ $(document).ready(function(){
                 <p>Set this attribute to specify the custom message that will appear if the required permit level(s) are not present.</p>
 <pre>
 &lt;div class="permit permit-<i>force</i> permit-<i>premium</i>" data-permit-message="Please &lt;a href='#'&gt;upgrade&lt;/a&gt;"&gt;
-    &lt;p&gt;This content will only show when a premium permit is present, otherwise it shows the message defined in the data-permit-message attribute.&lt;/p&gt;
+    &lt;p&gt;This content will show when a premium permit is present, otherwise it shows the message defined in the data-permit-message attribute.&lt;/p&gt;
 &lt;/div&gt;
 </pre>
             </div>
@@ -257,7 +256,7 @@ $(document).ready(function(){
                     <tbody>
                         <tr>
                             <th>permits</th>
-                            <td>Object of available states. The first item in the object is the default state; a permit for that state is issued when using the .permit-issue helper class.</td>
+                            <td>Object of available states.</td>
                             <td>['admin']</td>
                             <td>['free','premium','admin']</td>
                         </tr>
