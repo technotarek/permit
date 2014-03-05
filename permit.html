@@ -185,7 +185,8 @@ $(document).ready(function(){
     <div class="col-sm-12">
         <h2>Additional Helper Classes and Advanced Usage</h2>
 
-<p class="lead">Permit.js provides additional helper classes that allow you to create even more complex, interactive experiences.</p>
+<p class="lead">Permit.js provides additional helper classes that allow you to create even more complex, interactive experiences. Also see the <a href="#api">plugin's API</a> for even greater flexibility.</p>
+
 <div class="row">
     <div class="col-sm-12 col-md-8">
         <h4>.permit-issue-[permitName]</h4>
@@ -235,6 +236,46 @@ $(document).ready(function(){
 
 </div>
 </section>
+
+        <hr>
+
+        <section class="row" id="api">
+            <div class="col-sm-12">
+                <h2>Public API Methods</h2>
+                <p class="lead">For the ultimate control on issuing (or revoking) a permit, try the API. You can issue (or revoke) a permit whenever, wherever, and however you want.</p>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Description</th>
+                            <th>Format</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>issuePermit</th>
+                            <td><p>Issue a specific permit. The permit parameter must have been specified in the 'permits' setting.</p>
+                            <p> The destination parameter is optional and accepts any relative or absolute url. If the destination parameter is excluded the current page will reload.</p></td>
+                            <td>$.permit.issuePermit( &lt;<i>permit</i>&gt;, &lt;<i>destination</i>&gt; );</td>
+                            <td style="white-space:nowrap"><code>$.permit.issuePermit('premium', 'thanks-for-upgrading.html');</code></td>
+                        </tr>
+                        <tr>
+                            <th>revokePermit</th>
+                            <td>
+                                <p>Revoke a specific permit. The permit must have been specified in the 'permits' setting.</p>
+                                <p>The newPermit parameter is optional. Specifying a newPermit will issue that permit to the user as soon as the original is revoked. This might be used in the case of an account downgrade (e.g., from premium to free). If the parameter is excluded, no new permit is issued.</p>
+                                <p>The destination parameter is optional and accepts any relative or absolute url. If the destination parameter is excluded the current page will reload.</td>
+                            <td>$.permit.revokePermit( &lt;<i>permit</i>&gt;, &lt;<i>newPermit</i>&gt;, &lt;<i>destination</i>&gt; );</td>
+                            <td style="white-space:nowrap"><code>$.permit.revokePermit('premium', 'free', 'sorry-to-see-you-go.html');</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+
 
         <hr>
 
@@ -294,9 +335,6 @@ $(document).ready(function(){
                     <dt>Can I issue multiple permits at the same time?</dt>
                     <dd>In most cases, what you're probably trying to do can be done by applying multiple permit classes to the same element (e.g, .permit-free and .permit-premium). However, I can imagine a case where you might want to try very complex state combinations like free+online/offline and  premium+online/offline. That's not possible...yet.</dd>
                     <br>
-                    <dt>Does the plugin having any public API methods or callbacks?</dt>
-                    <dd>Sorry, not yet. I hope to add features of theses sorts soon. If you've a coder, please consider contributing to the project via <a href="https://github.com/technotarek/permit">GitHub</a>.</dd>
-                    <br>
                     <dt>How can I stay abreast of updates to this plugin?</dt>
                     <dd>Watch or star the <a href="https://github.com/technotarek/permit">project's GitHub repo</a>.</dd>
                     <br>
@@ -314,7 +352,6 @@ $(document).ready(function(){
             </div>
             <div class="col-md-6">
                 <ul>
-                    <li>Add public api methods</li>
                     <li>Add support for multiple, simultaneous permits</li>
                 </ul>
             </div>
@@ -345,7 +382,7 @@ $(document).ready(function(){
 	<script src="js/vendor/jquery-1.10.1.min.js"></script>
 	<script src="js/vendor/jquery.cookie.min.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/permit.min.js"></script>
+	<script src="js/permit.js"></script>
     <script src="js/main.js"></script>
 
 </body>
