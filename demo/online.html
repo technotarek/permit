@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Permit.js Demo</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<script src="../js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+</head>
+<body>
+
+	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+	    <div class="container">
+	        <!-- Brand and toggle get grouped for better mobile display -->
+	        <div class="navbar-header">
+	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            </button>
+	            <!-- <a class="navbar-brand" href="#">Local Resources Discovery Tool</a> -->
+	        </div>
+	        <!-- Collect the nav links, forms, and other content for toggling -->
+	        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+	            <ul class="nav navbar-nav">
+	                <li class="active"><a href="../permit.html">Permit.js</a></li>
+	            </ul>
+
+	        </div>
+
+	    </div>
+	</nav>
+
+	<div class="jumbotron">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<br>
+					<h1 class="pull-left" style="margin-right:20px">Permit.js</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+
+		<section class="row">
+			<div class="col-md-8">
+					<h2>Demo <small>Online / Offline</small></h2>
+					<p class="lead">This page demonstrates a basic app prototype where there are different online and offline features. <span class="permit permit-none">Start by logging in.</span> <span class="permit permit-online"><b><a href="#" class="permit-issue-offline">Now kick them offline!</a></b></span></p>
+					<hr>
+
+					<h3>The Code</h3>
+
+					<h5>HTML</h5>
+<pre>
+&lt;!-- Login Button --&gt;
+&lt;div class="permit permit-none"&gt;
+  ...
+  &lt;button class="permit permit-none permit-issue-online"&gt;Login&lt;/button&gt;
+  ...
+&lt;/div&gt;
+
+&lt;!-- Logout Button --&gt;
+&lt;div class="permit permit-all"&gt;
+  &lt;button type="button" class="permit-revoke-all"&gt;Logout&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Kick Them Offline --&gt;
+&lt;a href="#" class="permit-issue-offline"&gt;kick them offline&lt;/a&gt;
+
+&lt;!-- Online Mode --&gt;
+&lt;div class="permit permit-online"&gt;
+  online mode content
+&lt;/div&gt;
+
+&lt;!-- Offline Mode --&gt;
+&lt;div class="permit permit-offline"&gt;
+  offline mode content
+&lt;/div&gt;
+
+</pre>
+
+					<h5>Javascript</h5>
+<pre>
+$(document).ready(function()
+{
+    $.permit(
+        {permits: ['online','offline']}
+    );
+});
+</pre>
+
+			</div>
+			<div class="col-md-4" style="border:1px solid #ccc;border-radius:5px;padding:0">
+
+				<nav class="navbar navbar-default navbar-inverse" role="navigation" style="border-bottom-right-radius:0;border-bottom-left-radius:0">
+				    <div class="container-fluid">
+				        <!-- Brand and toggle get grouped for better mobile display -->
+				        <div class="navbar-header">
+				            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				            <span class="sr-only">Toggle navigation</span>
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+				            </button>
+				            <!-- <a class="navbar-brand" href="#">Local Resources Discovery Tool</a> -->
+				        </div>
+				        <!-- Collect the nav links, forms, and other content for toggling -->
+				        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+				            <ul class="nav navbar-nav">
+				                <li><a href="#" class="navbar-brand" style="color:#fff">App</a></li>
+				                <li class="permit permit none permit-online"><a><i class="fa fa-signal fa-lg" style="color:green"></i></a></li>
+				                <li class="permit permit-offline"><a><i class="fa fa-signal fa-lg" style="color:red"></i></a></li>
+				            </ul>
+							<div class="pull-right navbar-btn permit permit-all">
+							  <button type="button" class="btn btn-primary btn-sm permit-revoke-all">Logout</button>
+							</div>
+				        </div>
+
+				    </div>
+				</nav>
+				<div class="permit permit-none">
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1">
+							<label for="">Email</label>
+							<input type="text" class="form-control">
+
+							<label for="">Password</label>
+							<input type="text" class="form-control">
+
+							<br>
+
+							<button class="btn btn-primary permit permit-none permit-issue-online">Login</button>
+
+							<br><br>
+							<br><br>
+							<br><br>
+							<br><br>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="permit permit-online">
+					<img src="http://pics.rbc.ru/img/ver99/metro-moscow.gif" class="img-responsive" style="margin-top:-20px">
+				</div>
+				<div class="permit permit-offline">
+					<div style="padding:10px 20px 40px 20px">
+						<h2 class="text-center">Oops!</h2>
+						<p class="lead text-center">We're sorry, but you need an internet connection to access the map.</p>
+					</div>
+				</div>
+				<div class="permit-all">
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- Permit.js app demo 2 -->
+					<ins class="adsbygoogle"
+					     style="display:inline-block;width:320px;height:50px"
+					     data-ad-client="ca-pub-7124069219813221"
+					     data-ad-slot="5963859630"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+			</div>
+
+		</section>
+
+        <hr>
+
+        <section class="row">
+            <div class="col-md-6">
+                <p>Permit.js was developed by <a href="http://technotarek.com">Tarek Anandan, a freelance information architect, UX specialist, and website developer</a> based in Washington, DC.</p>
+                <br>
+            </div>
+        </section>
+
+	</div>
+	<!-- GLOBAL CORE SCRIPTS -->
+	<script src="../js/vendor/jquery-1.10.1.min.js"></script>
+	<script src="../js/vendor/jquery.cookie.min.js"></script>
+	<script src="../js/vendor/bootstrap.min.js"></script>
+	<script src="../js/permit.min.js"></script>
+	<script>
+		$(document).ready(function()
+		{
+		    $.permit(
+		        {permits: ['online','offline']}
+		    );
+		});
+	</script>
+
+</body>
+</html>
