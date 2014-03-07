@@ -78,21 +78,38 @@
 
                 <div class="row">
                     <div class="col-sm-4">
-                        <h3 class="text-center lead">Take Prototypes to the Next Level</h3>
+                        <h3 class="text-center">Take Your Prototypes to the Next Level</h3>
                         <p class="text-center">Use Permit.js to improve how your prototypes simulate complex, interactive behaviors.</p>
                     </div>
                     <div class="col-sm-4">
-                        <h3 class="text-center lead">Easy to Implement</h3>
+                        <h3 class="text-center">Laughably Easy to Implement</h3>
                         <p class="text-center">No server side langauges necessary. Just load Permit.js, specify your states and apply some simple CSS.</p>
                     </div>
                     <div class="col-sm-4">
-                        <h3 class="text-center lead">Persistent</h3>
-                        <p class="text-center">Permit.js persists across pages and sections of your website/app. "Issue a permit" and then surf around your entire site to get the full user experience for anyone of your states.</p>
+                        <h3 class="text-center">Persistent</h3>
+                        <p class="text-center">Permit.js persists across pages and sections of your website/app. "Issue a permit" and then surf around your entire site to get the full user experience for any of your states.</p>
                     </div>
                 </div>
 
                 </ul>
             </div>
+        </section>
+
+        <hr>
+
+        <section class="row">
+            <div class="col-sm-12">
+                <h2>How Does it Work</h2>
+            </div>
+                <div class="col-sm-6">
+                    <p class="lead">It's pretty simple. The plugin combines javascript-generated cookies with a set of dynamically-generated CSS utility classes to show and hide content. When you "issue a permit" with permit.js you're really just creating a cookie that remains in the browser throughout your prototype. Content is then displayed or hidden based on the existence (or non-existence) of the permits that have been issued.</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="lead">That's all? Did it really need a plugin?</p>
+                    <p>Permit.js greatly simplifies the process of managing cookies and using them to create dynamic, multi-state prototypes. Cookies can be created, updated/swapped, and destroyed solely through your CSS classes (e.g., <code>class="permit-issue-mystate"</code>). Furhter, it provides a highly flexible, universal, and project-specific (semantic) means of doing all of this.</p>
+                    <p>Sure, you could write your own js and css to do the same, but you'll probably find yourself re-writing and altering the code for your next project. <i>Trust me, that's what I found myself doing, and that's why I made it.</i>  In addition, if you're not comfortable with javascript, you barely have to touch it.</p>
+                </div>
+
         </section>
 
         <hr>
@@ -129,7 +146,7 @@ $(document).ready(function(){
 
 <br>
 <h3><span class="label label-info label-lg">3</span> Create a "Permits Agent"</h3>
-<p class="lead">The "agent" will help you issue your permits and change between your states. Create a container with an ID of 'permit-agent'. When the script is instantiated, this container will be populated with a dropdown of your available permits. The agent issues a new permit  when you click on an element with a class of 'permit-reissue'.</p>
+<p class="lead">The optional "agent" will help you issue your permits and change between your states. Create a container with an ID of 'permit-agent'. When the script is instantiated, this container will be populated with a dropdown of your available permits. The agent issues a new permit when you click on an element with a class of 'permit-reissue'. You don't have to use the agent. If you prefer you can just issue or revoke  permits using the plugin's <a href="#helpers">helper classes</a>.</p>
 
 <pre>
 &lt;div&gt;
@@ -189,7 +206,7 @@ $(document).ready(function(){
 
 <hr>
 
-<section class="row">
+<section class="row" id="helpers">
     <div class="col-sm-12">
         <h2>Additional Helper Classes and Advanced Usage</h2>
 
