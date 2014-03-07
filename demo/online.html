@@ -26,7 +26,9 @@
 	        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 	            <ul class="nav navbar-nav">
-	                <li class="active"><a href="../permit.html">Permit.js</a></li>
+	            	<li><a href="http://technotarek.com" class="navbar-brand"><img src="http://technotarek.com/images/logo_tt.png" class="img-responsive" height="30" width="30" style="margin-top:-5px"></a></li>
+	                <li><a href="../permit.html">Permit.js</a></li>
+	                <li class="active"><a href="#">Demos</a></li>
 	            </ul>
 
 	        </div>
@@ -50,7 +52,7 @@
 		<section class="row">
 			<div class="col-md-8">
 					<h2>Demo <small>Online / Offline</small></h2>
-					<p class="lead">This page demonstrates a basic app prototype where there are different online and offline features. <span class="permit permit-none">Start by logging in.</span> <span class="permit permit-online"><b><a href="#" class="permit-issue-offline">Now kick them offline!</a></b></span></p>
+					<p class="lead">This page demonstrates a basic app prototype where there are different online and offline features. <span class="permit permit-none">Start by logging in.</span> <span class="permit permit-online"><b><a href="#" class="permit-issue-offline">Uh oh, tunnel ahead. What happens when you lose your connection?</a></b></span> <span class="permit permit-offline"><b><a href="#" class="permit-issue-online">You made it? Got a signal again?</a></b></span></p>
 					<hr>
 
 					<h3>The Code</h3>
@@ -96,8 +98,22 @@ $(document).ready(function()
 
 			</div>
 			<div class="col-md-4" style="border:1px solid #ccc;border-radius:5px;padding:0">
-
-				<nav class="navbar navbar-default navbar-inverse" role="navigation" style="border-bottom-right-radius:0;border-bottom-left-radius:0">
+				<div style="background:#161616;color:#fff;padding:5px 30px">
+		                <div class="permit permit-none">
+		                	<span class="pull-left"><i class="fa fa-signal"></i></span>
+		                	<span class="pull-right">12:30</span>
+		                </div>
+		                <div class="permit permit-online">
+		                	<span class="pull-left"><i class="fa fa-signal fa"></i>&nbsp;&nbsp;<i class="fa fa-location-arrow"></i></span>
+		                	<span class="pull-right">12:30</span>
+		                </div>
+		                <div class="permit permit-offline">
+		                	<span class="pull-left"><i class="fa fa-ellipsis-h fa"></i></span>
+		                	<span class="pull-right">12:30</span>
+		                </div>
+		                <div class="clearfix"></div>
+				</div>
+				<nav class="navbar navbar-default navbar-inverse" role="navigation" style="border-radius:0">
 				    <div class="container-fluid">
 				        <!-- Brand and toggle get grouped for better mobile display -->
 				        <div class="navbar-header">
@@ -111,11 +127,8 @@ $(document).ready(function()
 				        </div>
 				        <!-- Collect the nav links, forms, and other content for toggling -->
 				        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
 				            <ul class="nav navbar-nav">
 				                <li><a href="#" class="navbar-brand" style="color:#fff">App</a></li>
-				                <li class="permit permit none permit-online"><a><i class="fa fa-signal fa-lg" style="color:green"></i></a></li>
-				                <li class="permit permit-offline"><a><i class="fa fa-signal fa-lg" style="color:red"></i></a></li>
 				            </ul>
 							<div class="pull-right navbar-btn permit permit-all">
 							  <button type="button" class="btn btn-primary btn-sm permit-revoke-all">Logout</button>
@@ -152,7 +165,7 @@ $(document).ready(function()
 				<div class="permit permit-offline">
 					<div style="padding:10px 20px 40px 20px">
 						<h2 class="text-center">Oops!</h2>
-						<p class="lead text-center">We're sorry, but you need an internet connection to access the map.</p>
+						<p class="lead text-center">We're sorry, but you need an internet connection to use GPS services.</p>
 					</div>
 				</div>
 				<div class="permit-all">
